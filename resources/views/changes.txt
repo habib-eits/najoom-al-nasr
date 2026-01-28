@@ -1,0 +1,3 @@
+22-12-2025 
+ALTER TABLE `invoice_master` ADD `ReferenceNo` VARCHAR(255) NULL AFTER `Balance`;
+ALTER TABLE `journal` ADD `ReferenceNo` VARCHAR(255) NULL AFTER `Trace`;
