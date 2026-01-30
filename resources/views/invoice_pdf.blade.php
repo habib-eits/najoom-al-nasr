@@ -46,11 +46,13 @@
 @endphp
 
 <body onload="window.print();">
-    @if ($balance > 0)
+    {{-- @if ($balance > 0)
         <img align="right" src="{{ asset('assets/images/unpaid-invoice.png') }}" alt="" class="paid-invoice-img">
     @else
         <img align="right" src="{{ asset('assets/images/paid-invoice.png') }}" alt="" class="paid-invoice-img">
-    @endif
+    @endif --}}
+            <img align="right" width="80px" src="{{ asset('assets/qr-code.png') }}" alt="">
+
     <table width="100%" border="0" style="margin-top: 0px;">
         <tr>
             <th width="50%" scope="col" align="left" style="vertical-align: top;">
@@ -63,8 +65,10 @@
 
             <td width="50%" style="line-height: 12pt">
                 @include('components.company-details')
-            </td>
 
+                
+            </td>
+            
         </tr>
         <tr>
             <td></td>
@@ -143,17 +147,17 @@
         
         ?>
 
-        @foreach ($invoice_det as $key => $value)
+        @foreach ($invoice_det as $value)
             <?php
-            
-            $service = $service + $value->Service;
-            $taxable = $taxable + $value->Taxable;
-            $total = $total + $value->Total;
+
+            $service += $value->Service;
+            $taxable += $value->Taxable;
+            $total += $value->Total;
             
             ?>
 
             <tr>
-                <td>{{ ++$key }}</td>
+                <td>{{ $loop->iteration }}</td>
                 <td style="padding-top: 10px;">{{ $value->ItemName }}
                     @if ($value->PaxName)
                         <br><strong>PAX:</strong> {{ $value->PaxName }}
@@ -186,7 +190,6 @@
                 </td>
                 <td align="center">{{ number_format($value->Service, 2) }}</td>
                 <td align="center">{{ number_format($value->Taxable, 2) }}<br>
-                    {{ $value->Taxable > 0 ? '5.00%' : '' }}
                 </td>
                 <td align="center">{{ number_format($value->Total, 2) }}</td>
             </tr>

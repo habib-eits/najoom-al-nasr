@@ -1580,7 +1580,6 @@ else
   public  function InvoiceSave(request $request)
   {
       
-      
      ///////////////////////USER RIGHT & CONTROL ///////////////////////////////////////////    
     $allow = check_role(Session::get('UserID'), 'Invoice', 'Create');
     if ($allow[0]->Allow == 'N') {
@@ -1704,7 +1703,8 @@ else
         'Sector' => $request->Sector[$i],
         'Fare' => $request->Fare[$i],
         'RefNo' => $request->RefNo[$i],
-        'Taxable' => $request->TaxAmount[$i],
+        'Taxable' => $request->Taxable[$i],
+        'TaxPer' => $request->TaxPer[$i],
         'Service' => $request->Service[$i],
         'OPVAT' => $request->OPVAT[$i],
         'IPVAT' => $request->IPVAT[$i],
@@ -1821,7 +1821,7 @@ else
 
         // tax start from here
         // if tax is > 0 
-        if ($request->TaxAmount[$i] > 0) {
+        if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -1832,7 +1832,7 @@ else
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => $request->TaxAmount[$i],
+            'Cr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -1848,7 +1848,7 @@ else
           //     'InvoiceMasterID' => $request->input('VHNO'), 
           //     'Date' => $request->input('Date'),
           //     'Trace' => 112,
-          //      'Dr' => $request->TaxAmount[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
+          //      'Dr' => $request->Taxable[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
           //   );
 
           //  $id= DB::table('journal')->insertGetId($tax_expense);
@@ -1863,7 +1863,7 @@ else
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => abs($request->TaxAmount[$i]),
+            'Dr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -2035,7 +2035,7 @@ else
 
 
 
-             if ($request->TaxAmount[$i] > 0) {
+             if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -2046,7 +2046,7 @@ else
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => $request->TaxAmount[$i],
+            'Dr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 2111
           );
@@ -2062,7 +2062,7 @@ else
           //     'InvoiceMasterID' => $request->input('VHNO'), 
           //     'Date' => $request->input('Date'),
           //     'Trace' => 112,
-          //      'Dr' => $request->TaxAmount[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
+          //      'Dr' => $request->Taxable[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
           //   );
 
           //  $id= DB::table('journal')->insertGetId($tax_expense);
@@ -2077,7 +2077,7 @@ else
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => abs($request->TaxAmount[$i]),
+            'Cr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 2110
           );
@@ -2419,7 +2419,8 @@ $saleman = $query->get();
         'Sector' => $request->Sector[$i],
         'Fare' => $request->Fare[$i],
         'RefNo' => $request->RefNo[$i],
-        'Taxable' => $request->TaxAmount[$i],
+        'Taxable' => $request->Taxable[$i],
+        'TaxPer' => $request->TaxPer[$i],
         'Service' => $request->Service[$i],
         'OPVAT' => $request->OPVAT[$i],
         'IPVAT' => $request->IPVAT[$i],
@@ -2534,7 +2535,7 @@ $saleman = $query->get();
 
         // tax start from here
         // if tax is > 0 
-        if ($request->TaxAmount[$i] > 0) {
+        if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -2545,7 +2546,7 @@ $saleman = $query->get();
             'PartyID' => $request->input('PartyID'),
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => $request->TaxAmount[$i],
+            'Cr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 310
           );
@@ -2561,7 +2562,7 @@ $saleman = $query->get();
             'PartyID' => $request->input('PartyID'),
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => abs($request->TaxAmount[$i]),
+            'Dr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 310
           );
@@ -2576,7 +2577,7 @@ $saleman = $query->get();
           //     'PartyID' => $request->input('PartyID'), 
           //     'InvoiceMasterID' => $request->input('VHNO'), 
           //     'Date' => $request->input('Date'),
-          //     'Dr' => $request->TaxAmount[$i],  
+          //     'Dr' => $request->Taxable[$i],  
           //     'Trace' => 311
           //   );
 
@@ -2746,7 +2747,7 @@ $saleman = $query->get();
 
 
 
-             if ($request->TaxAmount[$i] > 0) {
+             if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -2757,7 +2758,7 @@ $saleman = $query->get();
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => $request->TaxAmount[$i],
+            'Dr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 2111
           );
@@ -2773,7 +2774,7 @@ $saleman = $query->get();
           //     'InvoiceMasterID' => $request->input('VHNO'), 
           //     'Date' => $request->input('Date'),
           //     'Trace' => 112,
-          //      'Dr' => $request->TaxAmount[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
+          //      'Dr' => $request->Taxable[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
           //   );
 
           //  $id= DB::table('journal')->insertGetId($tax_expense);
@@ -2788,7 +2789,7 @@ $saleman = $query->get();
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => abs($request->TaxAmount[$i]),
+            'Cr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 2110
           );
@@ -3007,7 +3008,13 @@ if ((optional($invoice)->Paid ?? 0) == (optional($invoice)->Total ?? 0)) {
 
     $company = DB::table('company')->where('CompanyID', 1)->get();
     $invoice_mst = DB::table('v_invoice_master')->where('InvoiceMasterID', $id)->get();
-    $invoice_det = DB::table('v_invoice_detail2')->where('InvoiceMasterID', $id)->get();
+    $invoice_det = DB::table('invoice_detail')
+    ->leftJoin('item', 'invoice_detail.ItemID', '=', 'item.ItemID')
+    ->where('invoice_detail.InvoiceMasterID', $id)
+    ->select('invoice_detail.*', 'item.ItemName')
+    ->get();
+
+
     $invoice = DB::table('invoice_master')->select('total', 'paid')->where('InvoiceMasterID', $id)->first();
     $balance = $invoice->total - $invoice->paid;
 

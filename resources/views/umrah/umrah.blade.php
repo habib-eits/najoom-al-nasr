@@ -7,9 +7,7 @@
 
 
     <style>
-        body[data-sidebar=dark].vertical-collpsed {
-            min-height: 0px;
-        }
+       
 
         .error-border {
             border: 2px solid red;

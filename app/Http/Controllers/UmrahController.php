@@ -461,9 +461,10 @@ $validator = Validator::make($request->all(), [
 
 
         'UmrahFare' => $request->Fare[$i] ,
-        'Fare' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+        'Fare' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
         
-        'Taxable' => $request->VAT[$i],
+        'Taxable' => $request->Taxable[$i],
+        'TaxPer' => $request->TaxPer[$i],
         
         'Service' => $request->Service[$i],
         
@@ -603,7 +604,7 @@ $validator = Validator::make($request->all(), [
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 106
         );
@@ -663,7 +664,7 @@ $validator = Validator::make($request->all(), [
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Dr' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+          'Dr' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 109
         );
@@ -679,7 +680,7 @@ $validator = Validator::make($request->all(), [
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 110
         );
@@ -688,7 +689,7 @@ $validator = Validator::make($request->all(), [
 
         // tax start from here
         // if tax is > 0 
-        if ($request->VAT[$i] > 0) {
+        if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -699,7 +700,7 @@ $validator = Validator::make($request->all(), [
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => $request->VAT[$i],
+            'Cr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -716,7 +717,7 @@ $validator = Validator::make($request->all(), [
           //     'InvoiceMasterID' => $request->input('VHNO'), 
           //     'Date' => $request->input('Date'),
           //     'Trace' => 112,
-          //      'Dr' => $request->VAT[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
+          //      'Dr' => $request->Taxable[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
           //   );
 
           //  $id= DB::table('journal')->insertGetId($tax_expense);
@@ -731,7 +732,7 @@ $validator = Validator::make($request->all(), [
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => abs($request->VAT[$i]),
+            'Dr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -795,7 +796,7 @@ $validator = Validator::make($request->all(), [
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Dr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->VAT[$i]),
+          'Dr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->Taxable[$i]),
 
           'Narration' => $request->PaxName[$i],
           'Trace' => 106
@@ -884,7 +885,7 @@ $validator = Validator::make($request->all(), [
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Cr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->VAT[$i]),
+          'Cr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->Taxable[$i]),
 
           'Narration' => $request->PaxName[$i],
           'Trace' => 109
@@ -901,7 +902,7 @@ $validator = Validator::make($request->all(), [
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Dr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->VAT[$i]),
+          'Dr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->Taxable[$i]),
 
           'Narration' => $request->PaxName[$i],
           'Trace' => 110
@@ -911,7 +912,7 @@ $validator = Validator::make($request->all(), [
 
         // tax start from here
         // if tax is > 0 
-        if ($request->VAT[$i] > 0) {
+        if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -922,7 +923,7 @@ $validator = Validator::make($request->all(), [
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => $request->VAT[$i],
+            'Dr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -945,7 +946,7 @@ $validator = Validator::make($request->all(), [
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => abs($request->VAT[$i]),
+            'Cr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -1303,16 +1304,17 @@ $updatePaidValue = DB::table('invoice_master')
         'Passport' => $request->Passport[$i],
         'PickPoint' => $request->PickPoint[$i],
         'RoomType' => $request->RoomType[$i],
-        'UmrahFare' => $request->Fare[$i] ,
 
 
         'Deduction' => $request->deduction[$i],
 
      
         'UmrahFare' => $request->Fare[$i] ,
-        'Fare' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+        'Fare' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
         
-        'Taxable' => $request->VAT[$i],
+        'Taxable' => $request->Taxable[$i],
+        'TaxPer' => $request->TaxPer[$i],
+        
         
         'Service' => $request->Service[$i],
         
@@ -1459,7 +1461,7 @@ $updatePaidValue = DB::table('invoice_master')
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 106
         );
@@ -1519,7 +1521,7 @@ $updatePaidValue = DB::table('invoice_master')
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Dr' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+          'Dr' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 109
         );
@@ -1535,7 +1537,7 @@ $updatePaidValue = DB::table('invoice_master')
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+          'Cr' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 110
         );
@@ -1544,7 +1546,7 @@ $updatePaidValue = DB::table('invoice_master')
 
         // tax start from here
         // if tax is > 0 
-        if ($request->VAT[$i] > 0) {
+        if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -1555,7 +1557,7 @@ $updatePaidValue = DB::table('invoice_master')
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => $request->VAT[$i],
+            'Cr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -1572,7 +1574,7 @@ $updatePaidValue = DB::table('invoice_master')
           //     'InvoiceMasterID' => $request->input('VHNO'), 
           //     'Date' => $request->input('Date'),
           //     'Trace' => 112,
-          //      'Dr' => $request->VAT[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
+          //      'Dr' => $request->Taxable[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
           //   );
 
           //  $id= DB::table('journal')->insertGetId($tax_expense);
@@ -1587,7 +1589,7 @@ $updatePaidValue = DB::table('invoice_master')
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => abs($request->VAT[$i]),
+            'Dr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -1650,7 +1652,7 @@ $updatePaidValue = DB::table('invoice_master')
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Dr' => $request->Paid[$i] - ($request->Service[$i] + $request->VAT[$i]),
+          'Dr' => $request->Paid[$i] - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 106
         );
@@ -1751,7 +1753,7 @@ $updatePaidValue = DB::table('invoice_master')
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Cr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->VAT[$i]),
+          'Cr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 109
         );
@@ -1767,7 +1769,7 @@ $updatePaidValue = DB::table('invoice_master')
           'PartyID' => $request->PartyID,
           'InvoiceMasterID' => $request->input('VHNO'),
           'Date' => $request->input('Date'),
-          'Dr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->VAT[$i]),
+          'Dr' => ($request->Paid[$i]+$request->deduction[$i]) - ($request->Service[$i] + $request->Taxable[$i]),
           'Narration' => $request->PaxName[$i],
           'Trace' => 110
         );
@@ -1776,7 +1778,7 @@ $updatePaidValue = DB::table('invoice_master')
 
         // tax start from here
         // if tax is > 0 
-        if ($request->VAT[$i] > 0) {
+        if ($request->Taxable[$i] > 0) {
 
           // tax Debit
           $tax_payable = array(
@@ -1787,7 +1789,7 @@ $updatePaidValue = DB::table('invoice_master')
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Dr' => $request->VAT[$i],
+            'Dr' => $request->Taxable[$i],
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );
@@ -1804,7 +1806,7 @@ $updatePaidValue = DB::table('invoice_master')
           //     'InvoiceMasterID' => $request->input('VHNO'), 
           //     'Date' => $request->input('Date'),
           //     'Trace' => 112,
-          //      'Dr' => $request->VAT[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
+          //      'Dr' => $request->Taxable[$i], // kamal disable this code due to net amount posted in commsion. net off 100 - tax 
           //   );
 
           //  $id= DB::table('journal')->insertGetId($tax_expense);
@@ -1819,7 +1821,7 @@ $updatePaidValue = DB::table('invoice_master')
             'PartyID' => $request->PartyID,
             'InvoiceMasterID' => $request->input('VHNO'),
             'Date' => $request->input('Date'),
-            'Cr' => abs($request->VAT[$i]),
+            'Cr' => abs($request->Taxable[$i]),
             'Narration' => $request->PaxName[$i],
             'Trace' => 111
           );

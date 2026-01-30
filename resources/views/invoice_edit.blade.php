@@ -269,7 +269,7 @@
                                                             <td>
 
                                                                 <select name="ItemID0[]" id="ItemID0_{{ $no }}"
-                                                                    class="form-select select2 form-control-sm   changesNoo"
+                                                                    class="form-select select2 form-control-sm item-select"
                                                                     style="width:100%">
                                                                     @foreach ($items as $key => $value)
                                                                         <option value="{{ $value->ItemID }}"
@@ -281,7 +281,7 @@
                                                                 </select>
                                                                 <select name="SupplierID[]"
                                                                     id="SupplierID_{{ $no }}"
-                                                                    class=" form-select select2 changesNo"
+                                                                    class=" form-select select2"
                                                                     onchange="ajax_balance(this.value);"
                                                                     style="width:100%">
                                                                     @foreach ($supplier as $key => $value)
@@ -294,7 +294,7 @@
                                                             <td>
                                                                 <input type="text" name="PaxName[]"
                                                                     id="PaxName_{{ $no }}"
-                                                                    class=" form-control changesNo" autocomplete="off"
+                                                                    class=" form-control " autocomplete="off"
                                                                     value="{{ $value1->PaxName }}">
                                                                 <input type="text" name="TicketNo[]"
                                                                     id="TicketNo_{{ $no }}"
@@ -306,18 +306,18 @@
                                                             <td>
                                                                 <input type="text" name="Sector[]"
                                                                     id="Sector_{{ $no }}"
-                                                                    class=" form-control changesNo" autocomplete="off"
+                                                                    class=" form-control " autocomplete="off"
                                                                     value="{{ $value1->Sector }}" placeholder="Sector">
                                                                 <input type="text" name="PNR[]"
                                                                     id="PNR_{{ $no }}"
-                                                                    class=" form-control changesNo" autocomplete="off"
+                                                                    class=" form-control " autocomplete="off"
                                                                     value="{{ $value1->PNR }}">
                                                             </td>
 
                                                             <td>
                                                                 <input type="number" name="Fare[]"
                                                                     id="Fare_{{ $no }}"
-                                                                    class=" form-control changesNo" autocomplete="off"
+                                                                    class=" form-control row-calculation" autocomplete="off"
                                                                     onkeypress="return IsNumeric(event);"
                                                                     ondrop="return false;" onpaste="return false;"
                                                                     step="0.01" value="{{ $value1->Fare }}">
@@ -331,14 +331,14 @@
                                                             <td class="d-none">
                                                                 <input type="text" name="RefNo[]"
                                                                     id="RefNo_{{ $no }}"
-                                                                    class="form-control     changesNo" autocomplete="off"
+                                                                    class="form-control     " autocomplete="off"
                                                                     value="{{ $value1->RefNo }}">
                                                             </td>
 
                                                             <td class="d-none">
                                                                 <input type="text" name="VisaType[]"
                                                                     id="VisaType_{{ $no }}"
-                                                                    class="   form-control changesNo" autocomplete="off"
+                                                                    class="   form-control " autocomplete="off"
                                                                     value="{{ $value1->VisaType }}">
                                                             </td>
 
@@ -346,29 +346,30 @@
 
 
                                                             <td>
-                                                                <input type="number" name="Taxable[]"
-                                                                    id="Taxable_{{ $no }}"
-                                                                    class=" form-control  changesNo " autocomplete="off"
+                                                                 <input readonly type="number" name="TaxPer[]"
+                                                                    id="TaxPer_{{ $no }}"
+                                                                    class=" form-control " autocomplete="off"
                                                                     onkeypress="return IsNumeric(event);"
                                                                     ondrop="return false;" onpaste="return false;"
-                                                                    step="0.01" value="5">
-                                                                <input type="number" name="TaxAmount[]"
-                                                                    id="TaxAmount_{{ $no }}"
-                                                                    class=" form-control changesNo" autocomplete="off"
+                                                                    step="0.01" value="{{ $value1->TaxPer }}">
+                                                                <input readonly type="number" name="Taxable[]"
+                                                                    id="Taxable_{{ $no }}"
+                                                                    class=" form-control   " autocomplete="off"
                                                                     onkeypress="return IsNumeric(event);"
                                                                     ondrop="return false;" onpaste="return false;"
                                                                     step="0.01" value="{{ $value1->Taxable }}">
+                                                               
                                                             </td>
                                                             <td>
                                                                 <input type="number" name="Service[]"
                                                                     id="Service_{{ $no }}"
-                                                                    class=" form-control" autocomplete="off"
+                                                                    class=" form-control row-calculation" autocomplete="off"
                                                                     onkeypress="return IsNumeric(event);"
                                                                     ondrop="return false;" onpaste="return false;"
                                                                     step="0.01" value="{{ $value1->Service }}">
                                                                 <input type="number" name="Discount[]"
                                                                     id="discount_{{ $no }}"
-                                                                    class=" form-control changesNo" autocomplete="off"
+                                                                    class=" form-control " autocomplete="off"
                                                                     onkeypress="return IsNumeric(event);"
                                                                     ondrop="return false;" onpaste="return false;"
                                                                     step="0.01" value="{{ $value1->Discount }}"
@@ -397,9 +398,9 @@
 
 
                                                             <td>
-                                                                <input type="number" name="ItemTotal[]"
+                                                                <input readonly type="number" name="ItemTotal[]"
                                                                     id="total_{{ $no }}"
-                                                                    class=" form-control totalLinePrice changesNo"
+                                                                    class=" form-control totalLinePrice "
                                                                     autocomplete="off"
                                                                     onkeypress="return IsNumeric(event);"
                                                                     ondrop="return false;" onpaste="return false;"
@@ -501,7 +502,7 @@
                                                 </div>
 
 
-                                                <div class="form-group mt-3">
+                                                <div class="form-group mt-3 d-none">
                                                     <label>
                                                         <h5>Bank Charges:</h5>
                                                     </label>
@@ -685,376 +686,13 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
         crossorigin="anonymous"></script>
 
-    <script>
-        /**
-         * Site : http:www.smarttutorials.net
-         * @author muni
-         */
+    
 
-        //adds extra table rows
-        // var i=$('table tr').length;
-        // $(".addmore").on('click',function(){
-        //   html = '<tr class="bg-light borde-1 border-light ">';
-        //   html += '<td class="p-1"><input class="case" type="checkbox"/></td>';
-        //   html += '<td><select name="ItemID0[]" id="ItemID0_'+i+'" class="form-select select2 changesNoo"> @foreach ($items as $key => $value) <option value="{{ $value->ItemID }}" data-tax="{{ $value->Percentage ?? 0 }}">{{ $value->ItemCode }}-{{ $value->ItemName }}-{{ $value->Percentage }}</option>@endforeach</select></td>';
 
-
-
-        //   // html += '<td><select name="ItemID[]" id="ItemID_'+i+'" class="form-select changesNoo"><option value="">Select Item</option><option value="">b</option></select></td>';
-        //   html += '<td><select name="SupplierID[]" id="SupplierID_'+i+'"  onchange="ajax_balance(this.value);" class="js-example-basic-single form-select" style="width:200px">@foreach ($supplier as $key => $value) <option value="{{ $value->SupplierID }}">{{ $value->SupplierName }}</option>@endforeach</select></td>';
-        //   html += '<td><input type="text" name="RefNo[]" id="RefNo_'+i+'" class="form-control  " ></td>';
-        //   html += '<td><input type="text" name="VisaType[]" id="VisaType_'+i+'" class="form-control " ></td>';
-        //   html += '<td><input type="text" name="PaxName[]" id="PaxName_'+i+'" class="form-control " ></td>';
-        //   html += '<td><input type="text" name="PNR[]" id="PNR_'+i+'" class="form-control " ></td>';
-        //   html += '<td><input type="text" name="Sector[]" id="Sector_'+i+'" class="form-control " ></td>';
-        //   html += '<td><input type="text" name="Fare[]" id="Fare_'+i+'" class="form-control  " autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-        //   html += '<td><input type="text" name="Taxable[]" id="Taxable_'+i+'" class="form-control changesNo   " autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="5"></td>';
-        //   html += '<td><input type="text" name="Service[]" id="Service_'+i+'" class="form-control  " autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-        //   html += '<td class="d-none"><input type="text" name="OPVAT[]" id="OPVAT_'+i+'" class="form-control  changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-        //   html += '<td class="d-none"><input type="text" name="IPVAT[]" id="IPVAT_'+i+'" class="form-control  changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-        //   html += '<td><input type="text" name="TaxAmount[]" id="TaxAmount_'+i+'" class="form-control changesNo " autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-        //   html += '<td><input type="text" name="Discount[]" id="discount_'+i+'" class="form-control changesNo " autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-        //   html += '<td><input type="text" name="ItemTotal[]" id="total_'+i+'" class="form-control totalLinePrice changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-
-
-
-
-        //   html += '</tr>';
-        //         $('table').append(html);
-        //        $('#ItemID0_' + i).select2();
-        //       $('#SupplierID_' + i).select2();
-        //         i++;
-
-        // });
-
-
-
-        var i = $('table tr').length;
-
-        $(".addmore").on('click', function() {
-            var html = '<tr class="bg-light borde-1 border-light " style="vertical-align:top;">';
-            html += '<td class="p-1"><input class="case" type="checkbox"/></td>';
-            html += '<td><div class=""><select name="ItemID0[]" id="ItemID0_' + i +
-                '" class="form-select select2 changesNoo" required style="width:100%;">';
-            html += '<option value="">Select</option>'; // Add the Select option
-            html +=
-                '@foreach ($items as $key => $value) <option value="{{ $value->ItemID }}" data-tax="{{ $value->Percentage }}">{{ $value->ItemCode }}-{{ $value->ItemName }}-{{ $value->Percentage }}</option>@endforeach</select></div>';
-            html += '<select name="SupplierID[]" id="SupplierID_' + i +
-                '" onchange="ajax_balance(this.value);" class="form-select select2" required style="width:100%;"><option value="">Select</option>@foreach ($supplier as $key => $value) <option value="{{ $value->SupplierID }}">{{ $value->SupplierName }}</option>@endforeach</td>';
-
-            html += '<td class="d-none"><input type="text" name="RefNo[]" id="RefNo_' + i +
-                '" class="form-control" placeholder="RefNo"><input type="text" name="VisaType[]" id="VisaType_' +
-                i + '" class="form-control" placeholder="Visa"></td>';
-            // html += '<td>visa</td>';
-            html += '<td><input type="text" name="PaxName[]" id="PaxName_' + i +
-                '" class="form-control" placeholder="PaxName"><input type="text" name="TicketNo[]" id="TicketNo_' +
-                i + '" class="form-control  " autocomplete="off" placeholder="Ticket No"></td>';
-            // html += '<td>pnr</td>';
-            html += '<td><input type="text" name="Sector[]" id="Sector_' + i +
-                '" class="form-control" placeholder="Sector"><input type="text" name="PNR[]" id="PNR_' + i +
-                '" class="form-control" placeholder="PNR"></td>';
-            html += '<td><input type="text" required name="Fare[]" id="Fare_' + i +
-                '" class="form-control" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Fare"><input type="text" name="Passport[]" id="Passport_' +
-                i + '" class="form-control  " autocomplete="off" placeholder="Passport #"></td>';
-            html += '<td><input type="text" name="Taxable[]" id="Taxable_' + i +
-                '" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"  placeholder="VAT%"><input type="text" name="TaxAmount[]" id="TaxAmount_' +
-                i +
-                '" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="VAT Amt"></td>';
-            html += '<td><input type="text" name="Service[]" id="Service_' + i +
-                '" class="form-control" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Service"><input type="text" name="Discount[]" id="discount_' +
-                i +
-                '" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Discount"></td>';
-            html += '<td class="d-none"><input type="text" name="OPVAT[]" id="OPVAT_' + i +
-                '" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-            html += '<td class="d-none"><input type="text" name="IPVAT[]" id="IPVAT_' + i +
-                '" class="form-control changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"></td>';
-            // html += '<td>tax</td>';
-            // html += '<td>service</td>';
-            html += '<td><input type="text" required name="ItemTotal[]" id="total_' + i +
-                '" class="form-control totalLinePrice changesNo" autocomplete="off" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Total"><input type="date" name="DepartureDate[]" id="DepartureDate_' +
-                i + '" class="form-control"></td>';
-
-
-
-            html += '</tr>';
-            $('table').append(html);
-            $('#ItemID0_' + i).select2();
-            $('#SupplierID_' + i).select2();
-            i++;
-
-
-
-
-        });
-
-
-        $(document).ready(function() {
-            $('.select2').select2(); // Initialize Select2 if not already initialized
-
-            $(document).on('change', '.select2', function() {
-                let selectedValue = $(this).val();
-                let taxPercentage = $(this).find(':selected').data('tax'); // Get the data-tax attribute
-                id_arr = $(this).attr('id');
-
-                id = id_arr.split("_");
-                $('#Taxable_' + id[1]).val(taxPercentage);
-
-
-                console.log("Selected Value:", selectedValue);
-                console.log("Tax Percentage:", taxPercentage);
-            });
-        });
-
-
-
-        //to check all checkboxes
-        $(document).on('change', '#check_all', function() {
-            $('input[class=case]:checkbox').prop("checked", $(this).is(':checked'));
-        });
-
-        //deletes the selected table rows
-        $(".delete").on('click', function() {
-            $('.case:checkbox:checked').parents("tr").remove();
-            $('#check_all').prop("checked", false);
-            calculateTotal();
-        });
-
-
-
-
-        //price change
-        $(document).on('blur', '.changesNo', function() {
-
-
-
-
-            InvoiceTypeID = $("#InvoiceTypeID option:selected").val();
-
-            id_arr = $(this).attr('id');
-            id = id_arr.split("_");
-
-
-            if (InvoiceTypeID == 1) {
-
-                price = $('#price_' + id[1]).val() || 0;
-
-
-                Fare = $('#Fare_' + id[1]).val() || 0;
-                Total = $('#total_' + id[1]).val() || 0;
-
-                Taxable = $('#Taxable_' + id[1]).val() || 0;
-
-                Service = parseFloat(Total) - parseFloat(Fare);
-
-
-                // TaxAmount = ( (parseFloat(Taxable)*parseFloat(Service))/100  ).toFixed(2);
-                // TaxAmount = ( (5*parseFloat(Service))/(100+5)  ).toFixed(2);
-
-
-                TaxPercentage = parseFloat($('#ItemID0_' + id[1]).find('option:selected').data('tax')) || 0;
-                console.log(TaxPercentage);
-
-                $('#Taxable_' + id[1]).val(TaxPercentage);
-
-                TaxAmount = ((parseFloat(TaxPercentage) * parseFloat(Service)) / (100 + parseFloat(TaxPercentage)))
-                    .toFixed(2);
-
-
-
-                $('#TaxAmount_' + id[1]).val(TaxAmount);
-                Service = parseFloat(Service) - parseFloat(TaxAmount);
-                $('#Service_' + id[1]).val(Service);
-
-
-
-
-                Discount = $('#discount_' + id[1]).val();
-
-
-            }
-
-
-            if ($('#Fare_' + id[1]).val() == "") {
-                Fare = 0;
-            }
-
-            if ($('#discount_' + id[1]).val() == "") {
-                Discount = 0;
-            }
-
-
-
-
-            // if($('#Service_'+id[1]).val() == "")
-            // {
-            //     Service=0;
-            // }
-
-            // InvoiceTypeID = $('#InvoiceTypeID').val();
-
-            if ($('#OPVAT_' + id[1]).val() == "") {
-                OPVAT = 0;
-            }
-
-            if ($('#IPVAT_' + id[1]).val() == "") {
-                IPVAT = 0;
-            }
-
-            // console.log("invoice:"+InvoiceTypeID);
-            // console.log(Fare);
-            // console.log(Service);
-            // console.log(total);
-
-            if (InvoiceTypeID == 2) {
-
-                console.log("invoice if:" + InvoiceTypeID);
-
-                $('#Service_' + id[1]).val(0);
-                $('#Taxable_' + id[1]).val(0);
-                $('#TaxAmount_' + id[1]).val(0);
-
-
-
-                // alert(Total);
-                Discount = $('#discount_' + id[1]).val();
-
-                if (Discount != "") {
-
-                    Totalold = $('#total_' + id[1]).val();
-                    Discount = $('#discount_' + id[1]).val();
-                    console.log(Discount + '-' + Totalold);
-                    Total1 = parseFloat(Totalold) - parseFloat(Discount);
-                    console.log(Total1);
-                    $('#total_' + id[1]).val(Total1);
-                }
-
-            }
-
-
-
-
-            calculateTotal();
-
-
-        });
-
-
-
-
-
-        $(document).on('change keyup blur', '#tax', function() {
-            calculateTotal();
-        });
-
-        //total price calculation 
-        function calculateTotal() {
-            subTotal = 0;
-            total = 0;
-            $('.totalLinePrice').each(function() {
-                if ($(this).val() != '') subTotal += parseFloat($(this).val());
-            });
-            $('#subTotal').val(subTotal.toFixed(2));
-            tax = $('#tax').val();
-            if (tax != '' && typeof(tax) != "undefined") {
-                taxAmount = subTotal * (parseFloat(tax) / 100);
-                $('#taxAmount').val(taxAmount.toFixed(2));
-                total = subTotal + taxAmount;
-            } else {
-                $('#taxAmount').val(0);
-                total = subTotal;
-            }
-            $('#totalAftertax').val(total.toFixed(2));
-            calculateAmountDue();
-        }
-
-        $(document).on('change keyup blur', '#amountPaid', function() {
-            calculateAmountDue();
-        });
-
-        //due amount calculation
-        // function calculateAmountDue(){
-        //   amountPaid = $('#amountPaid').val();
-        //   total = $('#totalAftertax').val();
-        //   if(amountPaid != '' && typeof(amountPaid) != "undefined" ){
-        //     amountDue = parseFloat(total) - parseFloat( amountPaid );
-        //     $('.amountDue').val( amountDue.toFixed(2) );
-        //   }else{
-        //     total = parseFloat(total).toFixed(2);
-        //     $('.amountDue').val( total);
-        //   }
-        // }
-
-
-        //It restrict the non-numbers
-        var specialKeys = new Array();
-        specialKeys.push(8, 46); //Backspace
-        function IsNumeric(e) {
-            var keyCode = e.which ? e.which : e.keyCode;
-            console.log(keyCode);
-            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-            return ret;
-        }
-
-        //datepicker
-        $(function() {
-            $.fn.datepicker.defaults.format = "dd-mm-yyyy";
-            $('#invoiceDate').datepicker({
-                startDate: '-3d',
-                autoclose: true,
-                clearBtn: true,
-                todayHighlight: true
-            });
-        });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
-
-
+    @include('invoice_js')
 
     <!-- ajax trigger -->
-    <script>
-        function ajax_balance(SupplierID) {
 
-            // alert($("#csrf").val());
-
-            $('#result').prepend('')
-            $('#result').prepend('<img id="theImg" src="{{ asset('assets/images/ajax.gif') }}" />')
-
-            var SupplierID = SupplierID;
-
-            // alert(SupplierID);
-            if (SupplierID != "") {
-                /*  $("#butsave").attr("disabled", "disabled"); */
-                // alert(SupplierID);
-                $.ajax({
-                    url: "{{ URL('/Ajax_Balance') }}",
-                    type: "POST",
-                    data: {
-                        _token: $("#csrf").val(),
-                        SupplierID: SupplierID,
-
-                    },
-                    cache: false,
-                    success: function(data) {
-
-
-
-                        $('#result').html(data);
-
-
-
-                    }
-                });
-            } else {
-                alert('Please Select Branch');
-            }
-
-
-
-
-        }
-    </script>
 
 
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
