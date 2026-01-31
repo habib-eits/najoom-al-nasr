@@ -309,7 +309,8 @@ $validator = Validator::make($request->all(), [
   {
 
  
-
+  
+  
      
      $invoice_type = DB::table('invoice_type')->where('InvoiceTypeID',$request->InvoiceTypeID)->get();
 
@@ -357,6 +358,10 @@ $validator = Validator::make($request->all(), [
         $DocumentImagePath = 'uploads/Document/' . $filename;
     }
 
+    $request->Percentage = $request->Percentage ?? 0;
+    $request->BankCharges = $request->BankCharges ?? 0;
+    
+
     $invoice_mst = array(
       'InvoiceMasterID' => $request->input('VHNO'),
       'InvoiceTypeID' => $request->input('InvoiceTypeID'),
@@ -375,15 +380,12 @@ $validator = Validator::make($request->all(), [
       'Document' =>  ($request->hasFile('Document')) ? $DocumentImagePath : '',
 
        // bank charges additional fields
-      'BankName' => $request->input('BankName') ?? '',
-      'Percentage' => $request->input('Percentage') ?? '',
-      'BankCharges' => $request->input('PercentageValue') ?? '',
-      'GrandTotal' => $request->input('GrandTotal'),
- 
-
-
-
+      // 'BankName' => $request->input('BankName') ?? '',
+      // 'Percentage' => $request->input('Percentage') ?? '',
+      // 'BankCharges' => $request->input('PercentageValue') ?? '',
+      // 'GrandTotal' => $request->input('GrandTotal'),
     );
+    
 
     // $id= DB::table('')->insertGetId($data);
 

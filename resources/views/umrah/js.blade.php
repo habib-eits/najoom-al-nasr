@@ -61,41 +61,6 @@
 
 
 
-            // Vat = $('#VAT_' + id[1]).val();
-
-
-
-
-            // Paid = $('#Paid_' + id[1]).val();
-            // Total = $('#Total_' + id[1]).val();
-
-
-            // Service = parseFloat(Total) - parseFloat(Fare);
-            // // $('#Service_'+id[1]).val(Service);
-
-            // PaymentInBus = parseFloat(Total) - parseFloat(Paid);
-
-
-            // $('#PaymentInBus_' + id[1]).val(PaymentInBus);
-
-
-
-            // if ($('#Fare_' + id[1]).val() == "") {
-            //     Fare = 0;
-            // }
-
-            // if ($('#discount_' + id[1]).val() == "") {
-            //     Discount = 0;
-            // }
-
-
-            // TaxAmount = ((5 * parseFloat(Service)) / (100 + 5)).toFixed(2);
-            // $('#VAT_' + id[1]).val(TaxAmount);
-
-            // Service = parseFloat(Service) - parseFloat(TaxAmount);
-            // $('#Service_' + id[1]).val(Service);
-
-
             grandtotal();
 
 

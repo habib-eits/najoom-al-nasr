@@ -828,7 +828,7 @@
                                                                     Charges</label>
                                                                 <input type="number" name="deduction[]"
                                                                     id="deduction_{{ $no }}"
-                                                                    class="form-control" onblur="this.readonly=true;"
+                                                                    class="form-control row-calculation" onblur="this.readonly=true;"
                                                                     value="{{ $value1->Deduction }}">
                                                                 <label for="PassportFile_1"
                                                                     class="fw-bolder">Nationality</label>
