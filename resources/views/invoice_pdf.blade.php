@@ -51,7 +51,7 @@
     @else
         <img align="right" src="{{ asset('assets/images/paid-invoice.png') }}" alt="" class="paid-invoice-img">
     @endif --}}
-            <img align="right" width="80px" src="{{ asset('assets/qr-code.png') }}" alt="">
+    @include('components.qr-code')
 
     <table width="100%" border="0" style="margin-top: 0px;">
         <tr>
