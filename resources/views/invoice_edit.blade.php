@@ -369,7 +369,7 @@
                                                                     step="0.01" value="{{ $value1->Service }}">
                                                                 <input type="number" name="Discount[]"
                                                                     id="discount_{{ $no }}"
-                                                                    class=" form-control " autocomplete="off"
+                                                                    class=" form-control row-calculation" autocomplete="off"
                                                                     onkeypress="return IsNumeric(event);"
                                                                     ondrop="return false;" onpaste="return false;"
                                                                     step="0.01" value="{{ $value1->Discount }}"

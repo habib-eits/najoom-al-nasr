@@ -72,10 +72,7 @@ table th {
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></head>
     <body>
         <!-- Define header and footer blocks before your content -->
-        <header >
-           FALAK TRAVEL & TOURISM
-        </header>
-
+       
         <footer>
          
         </footer>
