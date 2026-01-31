@@ -121,7 +121,7 @@ $CreditTotal = $CreditTotal+ $value1->Credit;
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="3">AED </td>
+      <td colspan="3">{{ env('APP_CURRENCY') }} </td>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
       <td><div align="right">{{number_format($DebitTotal,2)}}</div></td>

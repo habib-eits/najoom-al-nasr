@@ -242,7 +242,7 @@ $assets = DB::table('v_journal')
         <div class="card shadow-sm text-center" style="border-top: 2px solid {{ sprintf('#%06X', mt_rand(0, 0xFFFFFF)) }};">
             <div class="card-body">
                 <h5 class="card-title">{{$value->ChartOfAccountName}}</h5>
-                <p class="card-text text-muted">AED {{number_format($value->balance)}} </p>
+                <p class="card-text text-muted">{{ env('APP_CURRENCY') }} {{number_format($value->balance)}} </p>
             </div>
         </div>
     </div>
@@ -503,7 +503,7 @@ $assets = DB::table('v_journal')
                                                     <h5 class="font-size-14 mb-0 text-white">Party Balance</h5>
                                                 </div>
                                                 <div class="text-muted mt-4">
-                                                    <h4 class="text-center text-white"><a href="{{URL('/PartyBalanceShowAll')}}" target="_blank" class="text-white">{{number_format($party_balance[0]->Balance,2)}}  AED</a> </h4>
+                                                    <h4 class="text-center text-white"><a href="{{URL('/PartyBalanceShowAll')}}" target="_blank" class="text-white">{{number_format($party_balance[0]->Balance,2)}}  {{ env('APP_CURRENCY') }}</a> </h4>
                                                     <div class="d-flex">
                                                          <span class="ms-2 text-truncate mt-3"> </span>
                                                     </div>
@@ -527,7 +527,7 @@ $assets = DB::table('v_journal')
                                                     <h5 class="font-size-14 mb-0 text-white">Today's Income </h5>   <span class=" w-50  text-end text-white">         {{date('d-M-Y') }}</span>
                                                 </div>
                                                 <div class="text-muted mt-4">
-                                                    <h4 class="text-center"><a href="{{URL('/SalemanTicketRegister')}}" class="text-white" >{{($expense[0]->Balance ==null) ? '0' :  number_format($expense[0]->Balance,2)}}   AED</a> </h4>
+                                                    <h4 class="text-center"><a href="{{URL('/SalemanTicketRegister')}}" class="text-white" >{{($expense[0]->Balance ==null) ? '0' :  number_format($expense[0]->Balance,2)}}   {{ env('APP_CURRENCY') }}</a> </h4>
                                                     <div class="d-flex">
                                                          <span class="ms-2 text-truncate mt-3"> </span>
                                                     </div>
@@ -551,7 +551,7 @@ $assets = DB::table('v_journal')
                                                     <h4 class="text-center"><a href="#" class="text-white">{{($invoice_summary[0]->Service ==null) ? '0' :  number_format($invoice_summary[0]->Service,2)}} 
 
  
-                                                     AED</a> </h4>
+                                                     {{ env('APP_CURRENCY') }}</a> </h4>
                                                     
                                                     <div class="d-flex">
                                                          <span class="ms-2 text-truncate mt-3"> </span>
@@ -572,7 +572,7 @@ $assets = DB::table('v_journal')
                                                     <h5 class="font-size-14 mb-0 text-white">Current Year P&L </h5> <span class="text-white w-50  text-end">{{date('Y') }}</span>
                                                 </div>
                                                 <div class="text-muted mt-4">
-                                                    <h4 class="text-center text-white"><a href="#" class="text-white">{{number_format($profit_loss,2)}} AED</a> </h4>
+                                                    <h4 class="text-center text-white"><a href="#" class="text-white">{{number_format($profit_loss,2)}} {{ env('APP_CURRENCY') }}</a> </h4>
                                                     
                                                     <div class="d-flex">
                                                          <span class="ms-2 text-truncate mt-3"> </span>

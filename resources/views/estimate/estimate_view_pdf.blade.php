@@ -391,17 +391,17 @@
                           <tr class="cart_subtotal">
                               <td class="no-borders"></td>
                               <th class="description">Subtotal</th>
-                              <td class="price"><span class="totals-price"><span class="amount"> {{number_format($estimate[0]->SubTotal,2)}} AED</span></span></td>
+                              <td class="price"><span class="totals-price"><span class="amount"> {{number_format($estimate[0]->SubTotal,2)}} {{ env('APP_CURRENCY') }}</span></span></td>
                           </tr>
                           <tr class="order_total">
                               <td class="no-borders"></td>
                               <th class="description">5% VAT </th>
-                              <td class="price"><span class="totals-price"><span class="amount">{{number_format($estimate[0]->Tax,2)}} AED</span></span></td>
+                              <td class="price"><span class="totals-price"><span class="amount">{{number_format($estimate[0]->Tax,2)}} {{ env('APP_CURRENCY') }}</span></span></td>
                           </tr>
                           <tr class="order_total">
                               <td class="no-borders"></td>
                               <th class="description">Total</th>
-                              <td class="price"><span class="totals-price"><span class="amount">{{number_format($estimate[0]->GrandTotal,2)}} AED</span></span></td>
+                              <td class="price"><span class="totals-price"><span class="amount">{{number_format($estimate[0]->GrandTotal,2)}} {{ env('APP_CURRENCY') }}</span></span></td>
                           </tr>
                           
                         </tfoot>

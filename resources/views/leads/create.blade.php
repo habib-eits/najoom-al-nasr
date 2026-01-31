@@ -117,7 +117,7 @@
                                     <label for="currency"><strong>Currency:</strong></label>
                                     <select name="currency" id="currency" class="form-select select2">
                                         {{-- <option value="" selected>--Select Currency--</option> --}}
-                                        <option value="AED" {{ old('currency') == 'AED' ? 'selected' : '' }}>AED
+                                        <option value="{{ env('APP_CURRENCY') }}" {{ old('currency') == '{{ env('APP_CURRENCY') }}' ? 'selected' : '' }}>{{ env('APP_CURRENCY') }}
                                         </option>
                                         <option value="USD" {{ old('currency') == 'USD' ? 'selected' : '' }}>USD
                                         </option>

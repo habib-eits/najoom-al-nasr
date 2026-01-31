@@ -249,7 +249,7 @@
                                             <h6>Total: &nbsp;</h6>
                                         </label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-light">AED</span>
+                                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                             <input type="number" name="Total" class="form-control" step="0.01" id="totalAftertax" placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" value="{{$challan_master[0]->Total}}">
                                         </div>
                                     </div>
@@ -259,7 +259,7 @@
                                             <h5>Amount Paid: &nbsp;</h5>
                                         </label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-light">AED</span>
+                                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                             <input type="number" class="form-control" id="amountPaid" name="amountPaid" placeholder="Amount Paid" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01">
                                         </div>
                                     </div>
@@ -270,7 +270,7 @@
                                             <H5>Amount Due: &nbsp;</H5>
                                         </label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-light">AED</span>
+                                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                             <input type="number" class="form-control amountDue" name="amountDue" id="amountDue" placeholder="Amount Due" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" step="0.01">
                                         </div>
                                     </div>

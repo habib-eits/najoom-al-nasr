@@ -588,7 +588,7 @@
                                                             <h5>Total: &nbsp;</h5>
                                                         </label>
                                                         <div class="input-group">
-                                                            <span class="input-group-text bg-light">AED</span>
+                                                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                             <input type="number" name="Total" id="totalAftertax"
                                                                 class="form-control" step="0.01" id="totalAftertax"
                                                                 placeholder="Total" onkeypress="return IsNumeric(event);"
@@ -627,7 +627,7 @@
                                                             <!-- Value Input -->
                                                             <div class="col-md-4">
                                                                 <div class="input-group">
-                                                                    <span class="input-group-text bg-light">AED</span>
+                                                                    <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                                     <input type="number" name="PercentageValue"
                                                                         id="PercentageValue" class="form-control"
                                                                         step="0.01" placeholder="Amount"
@@ -648,7 +648,7 @@
                                                             <H5>Grand Total: &nbsp;</H5>
                                                         </label>
                                                         <div class="input-group">
-                                                            <span class="input-group-text bg-light">AED</span>
+                                                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                             <input type="number" class="form-control" name="GrandTotal"
                                                                 id="GrandTotal" placeholder="Amount Due"
                                                                 onkeypress="return IsNumeric(event);"
@@ -662,7 +662,7 @@
                                                             <h5>Amount Paid: &nbsp;</h5>
                                                         </label>
                                                         <div class="input-group">
-                                                            <span class="input-group-text bg-light">AED</span>
+                                                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                             <input type="number" class="form-control" id="amountPaid"
                                                                 name="amountPaid" placeholder="Amount Paid"
                                                                 onkeypress="return IsNumeric(event);"
@@ -677,7 +677,7 @@
                                                             <H5>Amount Due: &nbsp;</H5>
                                                         </label>
                                                         <div class="input-group">
-                                                            <span class="input-group-text bg-light">AED</span>
+                                                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                             <input type="number" class="form-control amountDue"
                                                                 name="amountDue" id="amountDue" placeholder="Amount Due"
                                                                 onkeypress="return IsNumeric(event);"
@@ -1541,11 +1541,11 @@
             let bankCharge = parseFloat(percentageValueInput.value) || 0;
 
             if (source === "percentage") {
-                // User entered % → calculate AED
+                // User entered % → calculate {{ env('APP_CURRENCY') }}
                 bankCharge = (percentage / 100) * total;
                 percentageValueInput.value = bankCharge.toFixed(2);
             } else if (source === "value") {
-                // User entered AED → calculate %
+                // User entered {{ env('APP_CURRENCY') }} → calculate %
                 if (total > 0) {
                     percentage = (bankCharge / total) * 100;
                     percentageInput.value = percentage.toFixed(2);

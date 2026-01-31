@@ -269,7 +269,7 @@ $user = DB::table('user')->get();
 
                         <div class="mb-3 row">
                             <label for="amountReceived" class="col-md-2 col-form-label fw-bold">Invoice Amount
-                                (AED)</label>
+                                ({{ env('APP_CURRENCY') }})</label>
                             <div class="col-md-4">
                                 <input class="form-control" type="text" id="Total" name="Total" value="">
                             </div>
@@ -279,7 +279,7 @@ $user = DB::table('user')->get();
                         <div class="mb-3 row">
 
                             <label for="amountReceived" class="col-md-2 col-form-label fw-bold">Balance
-                                (AED)</label>
+                                ({{ env('APP_CURRENCY') }})</label>
                             <div class="col-md-4">
                                 <input class="form-control" type="text" id="balance" name="balance" value="">
                             </div>
@@ -295,7 +295,7 @@ $user = DB::table('user')->get();
 
                         <div class="mb-0 row">
                             <label for="amountReceived" class="col-md-2 col-form-label fw-bold">Amount Received
-                                (AED)</label>
+                                ({{ env('APP_CURRENCY') }})</label>
                             <div class="col-md-4">
                                 <input class="form-control" required="" min="1" type="number" id="amountReceived" name="amount_received"
                                     value="">

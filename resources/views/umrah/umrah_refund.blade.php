@@ -736,7 +736,7 @@
                             <h5>Total: &nbsp;</h5>
                           </label>
                           <div class="input-group">
-                            <span class="input-group-text bg-light">AED</span>
+                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                             <input type="number" name="Total"   class="form-control" step="0.01" id="totalAftertax"
                               placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;"
                               onpaste="return false;" value="{{$invoice_mst[0]->Total}}">
@@ -750,7 +750,7 @@
                             <h5>Total: &nbsp;</h5>
                           </label>
                           <div class="input-group">
-                            <span class="input-group-text bg-light">AED</span>
+                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                             <input type="number" name="GrandTotal" id="GrandTotal" class="form-control" step="0.01" id="GrandTotal"
                               placeholder="Total" onkeypress="return IsNumeric(event);" ondrop="return false;"
                               onpaste="return false;" value="{{$invoice_mst[0]->Total}}">
@@ -763,7 +763,7 @@
                             <h5>Amount Paid: &nbsp;</h5>
                           </label>
                           <div class="input-group">
-                            <span class="input-group-text bg-light">AED</span>
+                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                              <input type="number" class="form-control" id="amountPaid" name="amountPaid"
                               placeholder="Amount Paid" onkeypress="return IsNumeric(event);" ondrop="return false;"
                               onpaste="return false;" step="0.01" value="0">
@@ -777,7 +777,7 @@
                             <H5>Amount Due: &nbsp;</H5>
                           </label>
                           <div class="input-group">
-                            <span class="input-group-text bg-light">AED</span>
+                            <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                             <input type="number" class="form-control amountDue" name="amountDue" id="amountDue"
                               placeholder="Amount Due" onkeypress="return IsNumeric(event);" ondrop="return false;"
                               onpaste="return false;" step="0.01" value="{{$invoice_mst[0]->Balance}}">

@@ -162,7 +162,7 @@ body,td,th {
      <td height="25" ><div align="right"><strong>{{number_format($invoice_mst[0]->Paid,2)}}</strong></div></td>
    </tr>
         <tr>
-          <td height="25"  colspan="7" style="padding-left: 10px;" ><strong>NET PAYABLE AED </strong>{{ucwords(convert_number_to_words($invoice_mst[0]->Paid))}} Only/-</td>
+          <td height="25"  colspan="7" style="padding-left: 10px;" ><strong>NET PAYABLE {{ env('APP_CURRENCY') }} </strong>{{ucwords(convert_number_to_words($invoice_mst[0]->Paid))}} Only/-</td>
      <td height="25" ><div align="right"><strong>{{number_format($invoice_mst[0]->Balance,2)}}</strong></div></td>
    </tr>
       </table></td>

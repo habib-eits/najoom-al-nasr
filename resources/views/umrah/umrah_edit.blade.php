@@ -932,7 +932,7 @@
                                                         <h5>Total: &nbsp;</h5>
                                                     </label>
                                                     <div class="input-group">
-                                                        <span class="input-group-text bg-light">AED</span>
+                                                        <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                         <input type="number" name="Total" class="form-control"
                                                             step="0.01" id="totalAftertax" placeholder="Total"
                                                             onkeypress="return IsNumeric(event);" ondrop="return false;"
@@ -981,7 +981,7 @@
                                                         <!-- Value Input -->
                                                         <div class="col-md-4">
                                                             <div class="input-group">
-                                                                <span class="input-group-text bg-light">AED</span>
+                                                                <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                                 <input type="number" name="PercentageValue"
                                                                     id="PercentageValue" class="form-control"
                                                                     step="0.01" placeholder="Amount"
@@ -1002,7 +1002,7 @@
                                                         <H5>Grand Total: &nbsp;</H5>
                                                     </label>
                                                     <div class="input-group">
-                                                        <span class="input-group-text bg-light">AED</span>
+                                                        <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                         <input type="number" class="form-control" name="GrandTotal"
                                                             id="GrandTotal" placeholder="Amount Due"
                                                             onkeypress="return IsNumeric(event);" ondrop="return false;"
@@ -1021,7 +1021,7 @@
                                                 <h5>Amount Paid: &nbsp;</h5>
                                             </label>
                                             <div class="input-group">
-                                                <span class="input-group-text bg-light">AED</span>
+                                                <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                 <input type="number" class="form-control" id="amountPaid"
                                                     name="amountPaid" placeholder="Amount Paid"
                                                     onkeypress="return IsNumeric(event);" ondrop="return false;"
@@ -1037,7 +1037,7 @@
                                                 <H5>Amount Due: &nbsp;</H5>
                                             </label>
                                             <div class="input-group">
-                                                <span class="input-group-text bg-light">AED</span>
+                                                <span class="input-group-text bg-light">{{ env('APP_CURRENCY') }}</span>
                                                 <input type="number" class="form-control amountDue" name="amountDue"
                                                     id="amountDue" placeholder="Amount Due"
                                                     onkeypress="return IsNumeric(event);" ondrop="return false;"
@@ -1858,7 +1858,7 @@
                 bankCharge = (percentage / 100) * total;
                 percentageValueInput.value = bankCharge.toFixed(2);
             } else if (source === "value") {
-                // User typed in AED value → calculate percentage
+                // User typed in {{ env('APP_CURRENCY') }} value → calculate percentage
                 if (total > 0) {
                     percentage = (bankCharge / total) * 100;
                     percentageInput.value = percentage.toFixed(2);

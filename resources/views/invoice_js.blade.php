@@ -287,11 +287,11 @@
             let bankCharge = parseFloat(percentageValueInput.value) || 0;
 
             if (source === "percentage") {
-                // User entered % → calculate AED
+                // User entered % → calculate {{ env('APP_CURRENCY') }}
                 bankCharge = (percentage / 100) * total;
                 percentageValueInput.value = bankCharge.toFixed(2);
             } else if (source === "value") {
-                // User entered AED → calculate %
+                // User entered {{ env('APP_CURRENCY') }} → calculate %
                 if (total > 0) {
                     percentage = (bankCharge / total) * 100;
                     percentageInput.value = percentage.toFixed(2);

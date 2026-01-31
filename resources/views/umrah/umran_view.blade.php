@@ -77,7 +77,7 @@ $company = DB::table('company')->first(); ?>
             <td>&nbsp;</td>
             <td>
                 <div align="right" style="margin-top: 15px;"><strong>Balance Due<br />
-                        AED{{ number_format($invoice_mst[0]->Total - $invoice_mst[0]->Paid, 2) }}</strong></div><br>
+                        {{ env('APP_CURRENCY') }}{{ number_format($invoice_mst[0]->Total - $invoice_mst[0]->Paid, 2) }}</strong></div><br>
             </td>
         </tr>
     </table>
@@ -238,19 +238,19 @@ $company = DB::table('company')->first(); ?>
 
                     <tr>
                         <td height="25" align="right" style="padding-right: 25px;"><strong>Total</strong></td>
-                        <td height="25"><strong>AED{{ number_format($invoice_mst[0]->Total, 2) }}</strong></td>
+                        <td height="25"><strong>{{ env('APP_CURRENCY') }}{{ number_format($invoice_mst[0]->Total, 2) }}</strong></td>
                     </tr>
 
                     <tr>
                         <td height="25" align="right" style="padding-right: 25px;"><strong>Bank Charges</strong>
                         </td>
-                        <td height="25"><strong>AED{{ number_format($invoice_mst[0]->BankCharges, 2) }}</strong>
+                        <td height="25"><strong>{{ env('APP_CURRENCY') }}{{ number_format($invoice_mst[0]->BankCharges, 2) }}</strong>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" align="right" style="padding-right: 25px;"><strong>Grand Total</strong>
                         </td>
-                        <td height="25"><strong>AED{{ number_format($invoice_mst[0]->GrandTotal, 2) }}</strong>
+                        <td height="25"><strong>{{ env('APP_CURRENCY') }}{{ number_format($invoice_mst[0]->GrandTotal, 2) }}</strong>
                         </td>
                     </tr>
                     <tr>
@@ -261,7 +261,7 @@ $company = DB::table('company')->first(); ?>
                         <td height="25" align="right" style="padding-right: 25px;"><strong>Balance Due</strong>
                         </td>
                         <td height="25">
-                            <strong>AED{{ number_format($invoice_mst[0]->Total - $invoice_mst[0]->Paid, 2) }}</strong>
+                            <strong>{{ env('APP_CURRENCY') }}{{ number_format($invoice_mst[0]->Total - $invoice_mst[0]->Paid, 2) }}</strong>
                         </td>
                     </tr>
 
@@ -288,13 +288,13 @@ $company = DB::table('company')->first(); ?>
         <tr style="background-color: #333333; color: white;">
             <td height="25" scope="col" align="left" width="50%" style="padding-left: 10px;">Tax Detail
             </td>
-            <td scope="col" align="right">Taxable Amount (AED) </td>
-            <td scope="col" align="right" style="padding-right: 10px;">VAT Amount (AED) </td>
+            <td scope="col" align="right">Taxable Amount ({{ env('APP_CURRENCY') }}) </td>
+            <td scope="col" align="right" style="padding-right: 10px;">VAT Amount ({{ env('APP_CURRENCY') }}) </td>
         </tr>
         <tr>
             <td height="25" style="padding-left: 10px;">Standard Rate (5%) </td>
-            <td align="right">AED{{ number_format($service + $taxable, 2) }}</td>
-            <td align="right" style="padding-right: 10px;">AED{{ number_format($taxable, 2) }}</td>
+            <td align="right">{{ env('APP_CURRENCY') }}{{ number_format($service + $taxable, 2) }}</td>
+            <td align="right" style="padding-right: 10px;">{{ env('APP_CURRENCY') }}{{ number_format($taxable, 2) }}</td>
         </tr>
 
 
