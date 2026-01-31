@@ -172,7 +172,8 @@
 
 
                 <div class="row">
-                  <div class="col-6"> <img src="{{asset('assets/images/logo/ft.png')}}" alt="">
+                  <div class="col-6">
+                    
 
 
                     <br>
